@@ -2,6 +2,9 @@
 
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
+from datetime import datetime,timedelta
+from dateutil.relativedelta import relativedelta
+
 
 import logging
 _logger = logging.getLogger(__name__)
@@ -319,16 +322,16 @@ class ResPartner(models.Model):
         res = self.env['res.partner'].sudo().search([('company_type','=','judged')])
         return res
 
-    def calendar_verify_availability(self, date_start, date_end=fields.Datetime(2020, 12, 31, 20, 0, 0)):
+    def calendar_verify_availability(self, date_start, date_end):
         """ verify availability of the partner(s) between 2 datetimes on their calendar
         """
         if bool(self.env['calendar.event'].search_count([
             ('partner_ids', 'in', self.ids),
             ('state', 'not in', ['cancel',]),
-            '|', '&', ('start_datetime', '<', fields.Datetime.to_string(date_end)),
+            '|', '&', ('start_datetime', '<', fields.Datetime.to_string(date_end + relativedelta(minutes=float(30)))),
                       ('stop_datetime', '>', fields.Datetime.to_string(date_start)),
                  '&', ('allday', '=', True),
-                      '|', ('start_date', '=', fields.Date.to_string(date_end)),
+                      '|', ('start_date', '=', fields.Date.to_string(date_end + relativedelta(minutes=float(30)))),
                            ('start_date', '=', fields.Date.to_string(date_start))])):
             return False
         return True
