@@ -319,7 +319,7 @@ class ResPartner(models.Model):
         res = self.env['res.partner'].sudo().search([('company_type','=','judged')])
         return res
 
-    def calendar_verify_availability(self, date_start, date_end):
+    def calendar_verify_availability(self, date_start, date_end=datetime.datetime(2020, 12, 31, 20, 0, 0)):
         """ verify availability of the partner(s) between 2 datetimes on their calendar
         """
         if bool(self.env['calendar.event'].search_count([
