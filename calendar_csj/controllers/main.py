@@ -120,7 +120,7 @@ class WebsiteCalendarInherit(WebsiteCalendar):
         timezone = request.session['timezone']
         tz_session = pytz.timezone(timezone)
         date_start = tz_session.localize(fields.Datetime.from_string(date_time)).astimezone(pytz.utc)
-        date_end = date_start
+        date_end = date_start + relativedelta(hours=float(duration))
 
         # check availability calendar.event with partner of appointment_type
         if appointment_type and appointment_type.judged_id:
@@ -179,10 +179,10 @@ class WebsiteCalendarInherit(WebsiteCalendar):
         date_start = tz_session.localize(fields.Datetime.from_string(datetime_str)).astimezone(pytz.utc)
         # date_end = date_start + relativedelta(hours=float(duration))#appointment_type.appointment_duration)
         request_date = datetime.strptime(request_date, '%Y-%m-%d').date()
-        duration = float(0.5)
+        duration = float(duration)
         if len(phone) > 10:
             return ValidationError('Número de telefono %s no permitido.' % phone )
-        date_end = date_start + relativedelta(hours=0.5)
+        date_end = date_start + relativedelta(hours=duration)
         domain_emails = [ "cendoj.ramajudicial.gov.co",
                           "cortesuprema.ramajudicial.gov.co",
                           "consejoestado.ramajudicial.gov.co",
