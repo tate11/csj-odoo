@@ -113,7 +113,7 @@ $("#button_submit_appointment").on('click', function(e){
   rpc.query({
     model: 'calendar.appointment',
     method: 'fetch_calendar_verify_availability',
-    args: [this, calendar_appointment_type_id, date_time, 0.5],
+    args: [this, calendar_appointment_type_id, date_time, duration],
   }).then(function (data)
   {
     if (data === true){
@@ -365,7 +365,7 @@ odoo.define('calendar_csj.calendar_csj', function(require) {
                         var duration = $(".o_website_appoinment_form select[name='duration']").val();
                         var calendar_appointment_type_id = item['id'];
                         $(".o_website_appointment_form input[name='calendar_appointment_type_id']").val(calendar_appointment_type_id);
-                        var postURL = '/website/calendar/' + calendar_appointment_type_id + '/info?date_time='+ date_time + '&amp;duration=' + 0.5;
+                        var postURL = '/website/calendar/' + calendar_appointment_type_id + '/info?date_time='+ date_time + '&amp;duration=' + duration;
                         $(".o_website_appointment_form").attr('action', postURL);
                       }
                     }
@@ -416,7 +416,7 @@ odoo.define('calendar_csj.calendar_csj', function(require) {
                 var duration = $(".o_website_appoinment_form select[name='duration']").val();
                 var calendar_appointment_type_id = item['id'];
                 $(".o_website_appoinment_form input[name='calendar_appointment_type_id']").val(calendar_appointment_type_id);
-                var postURL = '/website/calendar/' + calendar_appointment_type_id + '/info?date_time='+ date_time + '&amp;duration=' + 0.5;
+                var postURL = '/website/calendar/' + calendar_appointment_type_id + '/info?date_time='+ date_time + '&amp;duration=' + duration;
                 $(".o_website_appointment_form").attr('action', postURL);
               }
             }
