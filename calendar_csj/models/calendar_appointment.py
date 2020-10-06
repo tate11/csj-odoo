@@ -532,7 +532,7 @@ class CalendarAppointment(models.Model):
         for record in self:
             if record.event_id and vals.get('calendar_datetime'):
                 start_datetime = fields.Datetime.from_string(vals.get('calendar_datetime'))
-                stop_datetime = start_datetime + datetime.timedelta(hours=1)
+                stop_datetime = start_datetime + datetime.timedelta(hours=0.5)
                 dic = {
                     'start_datetime': start_datetime,
                     'stop_datetime': stop_datetime,
