@@ -330,8 +330,8 @@ class ResPartner(models.Model):
                  '&', ('allday', '=', True),
                       '|', ('start_date', '=', fields.Date.to_string(date_end)),
                            ('start_date', '=', fields.Date.to_string(date_start))])):
-            return True
-        return False
+            return False
+        return True
 
 class HrEmployee(models.Model):
     _inherit = 'hr.employee'
