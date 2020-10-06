@@ -597,7 +597,7 @@ class CalendarAppointment(models.Model):
         #pytz.timezone('UTC')
         tz_session = pytz.timezone(timezone)
         date_start = tz_session.localize(fields.Datetime.from_string(date_start)).astimezone(pytz.utc)
-        date_end = date_start + relativedelta(minutes=float(30))
+        date_end = date_start + relativedelta(hours=float(2.0))
         calendar_appointment_type_obj = self.env['calendar.appointment.type'].browse(int(calendar_appointment_type_id))
         if not calendar_appointment_type_obj.judged_id.calendar_verify_availability(date_start,date_end):
             return False
