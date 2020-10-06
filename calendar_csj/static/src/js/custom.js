@@ -416,7 +416,7 @@ odoo.define('calendar_csj.calendar_csj', function(require) {
                 var duration = $(".o_website_appoinment_form select[name='duration']").val();
                 var calendar_appointment_type_id = item['id'];
                 $(".o_website_appoinment_form input[name='calendar_appointment_type_id']").val(calendar_appointment_type_id);
-                var postURL = '/website/calendar/' + calendar_appointment_type_id + '/info?date_time='+ date_time + '&amp;duration=' + duration;
+                var postURL = '/website/calendar/' + calendar_appointment_type_id + '/info?date_time='+ date_time + '&amp;duration=' + 0.5;
                 $(".o_website_appointment_form").attr('action', postURL);
               }
             }
