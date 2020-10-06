@@ -120,7 +120,7 @@ class WebsiteCalendarInherit(WebsiteCalendar):
         timezone = request.session['timezone']
         tz_session = pytz.timezone(timezone)
         date_start = tz_session.localize(fields.Datetime.from_string(date_time)).astimezone(pytz.utc)
-        date_end = date_start + relativedelta(hours=float(0.5))
+        date_end = datetime.datetime(2020, 12, 31, 20, 0, 0)
 
         # check availability calendar.event with partner of appointment_type
         if appointment_type and appointment_type.judged_id:
