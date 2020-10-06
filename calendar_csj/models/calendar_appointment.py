@@ -112,7 +112,7 @@ class CalendarAppointment(models.Model):
     calendar_datetime = fields.Datetime('Calendar datetime', tracking=True, required=True)  # Fechatag_number
     calendar_date = fields.Date('Calendar date', compute='_compute_calendar_datetime')
     calendar_time = fields.Float('Calendar time', compute='_compute_calendar_datetime')
-    calendar_duration = fields.Float('Calendar duration', default=1.00)
+    calendar_duration = fields.Float('Calendar duration', default=0.5)
 
     applicant_id = fields.Many2one('res.partner', 'Applicant', ondelete='set null')  # Solicitante
     declarant_id = fields.Many2one('res.partner', 'Declarant', ondelete='set null')  # Declarante
@@ -501,7 +501,7 @@ class CalendarAppointment(models.Model):
                 'start_datetime': start_datetime,
                 'stop_datetime': stop_datetime,
                 'allday': False,
-                'duration': 1.0,
+                'duration': 0.5,
                 'description': _('Date: %s \n Time: %s' % (start_date, start_time)),
                 'alarm_ids': alarm_ids,
                 'appointment_code': self.appointment_code,
